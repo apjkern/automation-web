@@ -1,0 +1,30 @@
+<unit browser="chrome" driver="E:\idea-workspace\automation\drivers\chromedriver.exe" close="false">
+    <group name="登录模块" interrupt="true">
+        <case name="尝试输入错误密码">
+            <step name="打开页面" cmd="open" value="http://192.168.1.107:6060/login"/>
+            <step name="输入用户名" cmd="input" css=".el-form > .el-row .el-col:nth-child(1) input" value="admin" appendRandom="true"/>
+            <step name="输入密码" cmd="input" css=".el-form > .el-row .el-col:nth-child(2) input" value="xxx"/>
+            <step name="点击登陆按钮" cmd="click" targetId="submit"/>
+            <success>
+                <condition css=".el-alert.el-alert--error" element="display" desc="应该提示登录失败"/>
+            </success>
+        </case>
+        <case name="尝试输入正确密码">
+            <step name="打开页面" cmd="open" value="http://192.168.1.107:6060/login"/>
+            <step name="输入用户名" cmd="input" css=".el-form > .el-row .el-col:nth-child(1) input" value="admin"/>
+            <step name="输入密码" cmd="input" css=".el-form > .el-row .el-col:nth-child(2) input" value="bitnei"/>
+            <step name="点击登陆按钮" cmd="click" targetId="submit"/>
+        </case>
+    </group>
+    <group name="故障码模块" delay="3000">
+        <case name="故障码报警设置">
+            <step name="展开左侧菜单" cmd="hover" css=".top-menu"/>
+            <step name="点击故障报警" cmd="click" css=".top-menu > li:nth-child(5)" delay="1000"/>
+            <step name="点击故障码报警规则" cmd="click" css=".sub-menu-container ul.sub-menu > li:nth-child(4)" delay="1000"/>
+            <step name="点击故障码报警规则设置" cmd="click" css=".sub-menu-container ul.sub-menu > li:nth-child(4) li:nth-child(1)"/>
+            <step name="点击新增" cmd="click" css=".xy-container > .xy-grid-container .xy-button-left button:nth-child(1)" delay="1000"/>
+            <!-- 填充内容 -->
+            <step name="输入规则名称" cmd="input" css=".xy-content form .el-col:nth-child(1) input" value="自动化测试" appendRandom="true"/>
+        </case>
+    </group>
+</unit>

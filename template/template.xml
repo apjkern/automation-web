@@ -1,0 +1,19 @@
+<unit browser="chrome|opera|edge|safari|ie|firefox" domQueryTimeout="1">
+    <group name="登录模块" interrupt="true" delayTime="3000">
+        <case name="尝试输入错误密码">
+            <step name="打开页面" cmd="open" url="http://192.168.1.107:6060/login"/>
+            <step name="输入用户名" cmd="input" targetId="user" value="admin"/>
+            <step name="输入密码" cmd="input" targetId="password" value="xxx"/>
+            <step name="点击登陆按钮" cmd="click" targetId="submit"/>
+            <success expression="and|or">
+                <condition targetId="" css="" element="display|exist" desc="应该提示登录失败"/>
+            </success>
+        </case>
+        <case name="尝试输入正确密码">
+            <step name="打开页面" cmd="open" value="http://192.168.1.107:6060/login"/>
+            <step name="输入用户名" cmd="input" targetId="user" css="" value="admin"/>
+            <step name="输入密码" cmd="input" targetId="password" css="" value="bitnei"/>
+            <step name="点击登陆按钮" cmd="click" targetId="submit"/>
+        </case>
+    </group>
+</unit>
